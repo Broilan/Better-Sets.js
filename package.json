@@ -1,15 +1,47 @@
 {
-  "name": "better-sets",
-  "private": true,
+  "Author": "Tanner Eschmann",
+  "name": "@broilan/better-sets",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "description": "Library of set methods",
+  "license": "MIT",
+  "main": "./dist/better-sets.umd.cjs",
+  "module": "./dist/better-sets.js",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://github.com/TannerEsch/Better-Sets.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TannerEsch/Better-Sets.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/better-sets.js",
+      "require": "./dist/better-sets.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@types/node": "^18.16.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "vite": "^4.3.2",
+    "vite-plugin-dts": "^2.3.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.17.18"
   }
 }
