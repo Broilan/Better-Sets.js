@@ -19,9 +19,33 @@ Set.prototype.filter = function<T>(callbackfn: (value: T, key: T, set: Set<T>) =
     return newSet;
 };
 
+Set.prototype.reduce = function<T, U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue?: any): U {
+    let result = initialValue;
+    let index = 0;
+    this.forEach((value, _, set) => {
+        result = callbackfn(result, value, index, Array.from(set));
+        index++;
+    });
+    return result;
+};
 
+Set.prototype.intersection = function<T>(set: Set<T>): Set<T> {
+    let newSet = new Set<T>();
+    this.forEach(val => set.has(val) && newSet.add(val));
+    return newSet;
+  }; 
+        
+Set.prototype.concat = function<T>(set: Set<T>): Set<T> {
+    let newSet = new Set<T>();
+    this.forEach(val => newSet.add(val));
+    set.forEach(val => newSet.add(val));
+    return newSet;
+  };
 
- 
+Set.prototype.isSubset = function<T>(set: Set<T>): boolean {
+    for(const n of this) if(!set.has(n)) return false;  
+    return true;
+  };
 
 
 let testSet = new Set<any>("1");
@@ -35,8 +59,15 @@ testSet.add("8");
 testSet.add("9");
 testSet.add("10");
 
+let testSet2 = new Set<any>("1");
+testSet2.add("2");
+testSet2.add("3");
+testSet2.add("4");
+testSet2.add("5");
+
+
 testSet;
 
-let x = testSet.filter(value => value !== "1");
-//output ---> Set(10) {"one", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
+let x = testSet.isSubset(testSet2);
+    
 x;
